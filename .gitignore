@@ -1,0 +1,19 @@
+# Mac
+.DS_Store
+
+# Secrets — never commit these
+.env
+.env.*
+*.env
+.dev.vars
+
+# Dependencies (if you ever add npm)
+node_modules/
+
+# Design reference files — not needed on live site (fonts are kept)
+mountainmoverz-design/screens/
+mountainmoverz-design/screenshots/
+mountainmoverz-design/references/
+mountainmoverz-design/tokens/
+mountainmoverz-design/DESIGN.md
+mountainmoverz-design/SKILL.md

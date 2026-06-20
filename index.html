@@ -1,0 +1,1828 @@
+<!DOCTYPE html>
+<!--
+================================================================================
+  FLOYD & CO. APPAREL — America 250 Landing (v4 Patriotic)
+  floydcoapparel.com
+================================================================================
+
+  STRIPE PAYMENT LINKS — PASTE YOURS HERE (one search/replace per URL):
+    Search for: PASTE_EAGLE_STRIPE_LINK_HERE
+    Search for: PASTE_WE_THE_PEOPLE_STRIPE_LINK_HERE
+
+  Or update the two const declarations near the bottom of the <script> tag.
+
+  IMAGE MAP (drop replacements into /images/ with same filenames):
+  ┌──────────────────────────────┬─────────────────────────────────────────────┐
+  │ FILE                         │ USED FOR                                    │
+  ├──────────────────────────────┼─────────────────────────────────────────────┤
+  │ cover-hero.png               │ Hero background (full-bleed)                │
+  │ logo-floyd-co-round.png      │ Header + footer brand mark                  │
+  │ eagle-washed-denim.png       │ Eagle Tee · default product card image      │
+  │ eagle-ivory.png              │ Eagle Tee · Ivory swatch                    │
+  │ eagle-white.png              │ Eagle Tee · White swatch                    │
+  │ wtp-black.png                │ We The People · default product card image  │
+  │ wtp-navy.png                 │ We The People · Navy swatch                 │
+  │ wtp-graphite.png             │ We The People · Graphite swatch             │
+  └──────────────────────────────┴─────────────────────────────────────────────┘
+
+  PRE-ORDER DEADLINE: June 24, 2026 11:00 PM CDT → UTC is 2026-06-25T04:00:00Z
+================================================================================
+-->
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Floyd & Co. Apparel — Celebrate 250 Years of American Freedom. Premium patriotic pre-order tees, printed in Tennessee. Pre-order closes June 24 at 11:00pm.">
+  <meta property="og:title" content="Floyd & Co. Apparel — America 250 Pre-Order">
+  <meta property="og:description" content="Premium patriotic tees with vintage artwork. Pre-order closes June 24 at 11:00pm. Local pickup or shipping.">
+  <meta property="og:image" content="images/cover-hero.png">
+  <title>Celebrate 250 Years of American Freedom · Floyd & Co. Apparel</title>
+
+  <style>
+    /* ============================================
+       FONT FACES (local files)
+    ============================================ */
+    @font-face { font-family:'Cardo'; src:url('mountainmoverz-design/fonts/Cardo-Bold.ttf') format('truetype'); font-weight:700; font-display:swap; }
+    @font-face { font-family:'Cardo'; src:url('mountainmoverz-design/fonts/Cardo-Regular.ttf') format('truetype'); font-weight:400; font-display:swap; }
+    @font-face { font-family:'Jost'; src:url('mountainmoverz-design/fonts/Jost-Regular.ttf') format('truetype'); font-weight:400; font-display:swap; }
+    @font-face { font-family:'Jost'; src:url('mountainmoverz-design/fonts/Jost-Medium.ttf') format('truetype'); font-weight:500; font-display:swap; }
+    @font-face { font-family:'Jost'; src:url('mountainmoverz-design/fonts/Jost-SemiBold.ttf') format('truetype'); font-weight:600; font-display:swap; }
+    @font-face { font-family:'Jost'; src:url('mountainmoverz-design/fonts/Jost-Bold.ttf') format('truetype'); font-weight:700; font-display:swap; }
+
+    /* ============================================
+       DESIGN TOKENS (patriotic conversion palette)
+    ============================================ */
+    :root {
+      --navy:          #0B2341;
+      --navy-2:        #163358;
+      --deep-red:      #A92824;
+      --deep-red-2:    #8b1d1a;
+      --cream:         #F6EFE3;
+      --antique-white: #FFF9EF;
+      --charcoal:      #242424;
+      --text-muted:    #5d5447;
+      --muted-gold:    #C49A4A;
+      --border:        #E4D6C2;
+      --white:         #ffffff;
+      --transition:    0.32s cubic-bezier(0.3,1,0.3,1);
+    }
+
+    /* ============================================
+       RESET / BASE
+    ============================================ */
+    *, *::before, *::after { box-sizing:border-box; margin:0; padding:0; }
+    html { scroll-behavior:smooth; }
+    body {
+      background:var(--cream);
+      color:var(--charcoal);
+      font-family:'Jost',sans-serif;
+      font-size:16px;
+      line-height:1.6;
+      -webkit-font-smoothing:antialiased;
+      text-rendering:optimizeLegibility;
+    }
+    img { max-width:100%; height:auto; display:block; }
+    a { color:inherit; text-decoration:none; }
+    button { font:inherit; cursor:pointer; border:none; background:none; color:inherit; }
+    :focus-visible { outline:3px solid var(--muted-gold); outline-offset:2px; border-radius:4px; }
+
+    .serif { font-family:'Cardo',serif; font-style:italic; }
+
+    /* ============================================
+       SECTION 1 — ANNOUNCEMENT BAR
+    ============================================ */
+    .bar {
+      background:var(--navy);
+      color:var(--cream);
+      overflow:hidden;
+      padding:10px 0;
+      position:relative;
+      z-index:100;
+    }
+    .bar-track {
+      display:flex;
+      animation:marquee 36s linear infinite;
+      white-space:nowrap;
+    }
+    .bar-track span {
+      padding:0 2rem;
+      flex-shrink:0;
+      font-size:0.72rem;
+      font-weight:600;
+      letter-spacing:0.18em;
+      text-transform:uppercase;
+    }
+    .bar-track span::after {
+      content:'★';
+      margin-left:2rem;
+      color:var(--muted-gold);
+      opacity:.85;
+    }
+    @keyframes marquee {
+      0%   { transform:translateX(0); }
+      100% { transform:translateX(-50%); }
+    }
+
+    /* ============================================
+       SECTION 2 — HEADER
+    ============================================ */
+    .header {
+      background:var(--cream);
+      border-bottom:1px solid var(--border);
+      padding:12px 24px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:14px;
+      position:sticky;
+      top:0;
+      z-index:90;
+      backdrop-filter:saturate(140%) blur(10px);
+    }
+    .header-logo { display:flex; align-items:center; }
+    .header-logo img {
+      height:56px;
+      width:56px;
+      object-fit:contain;
+      border-radius:50%;
+    }
+    .nav-links {
+      display:none;
+      gap:2rem;
+    }
+    @media(min-width:960px){ .nav-links{display:flex;} }
+    .nav-links a {
+      font-size:0.74rem;
+      font-weight:600;
+      letter-spacing:0.16em;
+      text-transform:uppercase;
+      color:var(--navy);
+      transition:color var(--transition);
+    }
+    .nav-links a:hover { color:var(--deep-red); }
+    .header-right { display:flex; align-items:center; gap:14px; }
+    .header-cd {
+      display:none;
+      font-family:'Cardo',serif;
+      font-weight:700;
+      font-size:0.95rem;
+      color:var(--deep-red);
+      letter-spacing:0.04em;
+      line-height:1;
+    }
+    .header-cd::before {
+      content:'CLOSES IN';
+      display:block;
+      font-family:'Jost',sans-serif;
+      font-weight:700;
+      font-size:0.55rem;
+      letter-spacing:0.22em;
+      color:var(--navy);
+      margin-bottom:3px;
+    }
+    @media(min-width:640px){ .header-cd { display:block; } }
+
+    .btn-primary {
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      background:var(--deep-red);
+      color:var(--cream);
+      font-family:'Jost',sans-serif;
+      font-size:0.78rem;
+      font-weight:700;
+      letter-spacing:0.16em;
+      text-transform:uppercase;
+      padding:13px 22px;
+      border-radius:999px;
+      transition:background var(--transition),transform var(--transition),box-shadow var(--transition);
+      box-shadow:0 6px 18px rgba(169,40,36,0.28);
+      white-space:nowrap;
+      min-height:44px;
+    }
+    .btn-primary:hover { background:var(--deep-red-2); transform:translateY(-1px); box-shadow:0 10px 26px rgba(169,40,36,0.42); }
+
+    .btn-secondary {
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      background:transparent;
+      color:var(--cream);
+      font-family:'Jost',sans-serif;
+      font-size:0.78rem;
+      font-weight:700;
+      letter-spacing:0.16em;
+      text-transform:uppercase;
+      padding:13px 22px;
+      border-radius:999px;
+      border:1.5px solid var(--cream);
+      transition:all var(--transition);
+      min-height:44px;
+    }
+    .btn-secondary:hover { background:var(--cream); color:var(--navy); }
+
+    .btn-large {
+      padding:18px 38px;
+      font-size:0.88rem;
+      min-height:54px;
+    }
+    .btn-block { width:100%; }
+
+    /* ============================================
+       SECTION 3 — HERO
+    ============================================ */
+    .hero {
+      position:relative;
+      min-height:44vh;
+      min-height:44svh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:32px 24px 36px;
+      overflow:hidden;
+    }
+    .hero-bg {
+      position:absolute;
+      inset:0;
+      background-image:url('images/cover-hero.png');
+      background-size:cover;
+      background-position:center 38%;
+      z-index:0;
+    }
+    .hero-overlay {
+      position:absolute;
+      inset:0;
+      background:linear-gradient(180deg, rgba(11,35,65,0.55) 0%, rgba(11,35,65,0.72) 60%, rgba(11,35,65,0.82) 100%);
+      z-index:1;
+    }
+    .hero-inner {
+      position:relative;
+      z-index:2;
+      max-width:780px;
+      text-align:center;
+      color:var(--cream);
+    }
+    .hero-eyebrow {
+      font-family:'Jost',sans-serif;
+      font-size:1.05rem;
+      font-weight:700;
+      letter-spacing:0.22em;
+      text-transform:uppercase;
+      margin-bottom:20px;
+      background: linear-gradient(
+        to bottom,
+        #ffe87c 0%,
+        #f5c018 22%,
+        #c9920a 48%,
+        #f0c040 68%,
+        #9a6e10 100%
+      );
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .hero-eyebrow::before, .hero-eyebrow::after {
+      content:'★';
+      margin:0 0.7em;
+      background: linear-gradient(
+        to bottom,
+        #ffe87c 0%,
+        #f5c018 22%,
+        #c9920a 48%,
+        #f0c040 68%,
+        #9a6e10 100%
+      );
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .hero-title {
+      font-family:'Cardo',serif;
+      font-style:italic;
+      font-weight:700;
+      font-size:clamp(2.4rem, 7vw, 5rem);
+      color:var(--cream);
+      line-height:1.05;
+      margin-bottom:22px;
+      letter-spacing:0.005em;
+    }
+    .hero-sub {
+      font-family:'Cardo',serif;
+      font-style:italic;
+      font-size:clamp(1.05rem, 2.4vw, 1.35rem);
+      color:rgba(246,239,227,0.92);
+      max-width:620px;
+      margin:0 auto 36px;
+      line-height:1.55;
+    }
+    .hero-ctas {
+      display:flex;
+      gap:14px;
+      flex-wrap:wrap;
+      justify-content:center;
+      margin-bottom:28px;
+    }
+    .hero-trust {
+      font-family:'Jost',sans-serif;
+      font-size:0.95rem;
+      letter-spacing:0.06em;
+      color:rgba(246,239,227,0.92);
+    }
+    .hero-trust .star {
+      color:var(--muted-gold);
+      margin:0 0.4em;
+    }
+
+    /* ============================================
+       SECTION 4 — PRODUCT CARDS
+    ============================================ */
+    .products {
+      padding:16px 24px 96px;
+      background:var(--cream);
+    }
+    .products-head {
+      max-width:760px;
+      margin:0 auto 56px;
+      text-align:center;
+    }
+    .section-eyebrow {
+      font-family:'Jost',sans-serif;
+      font-size:0.72rem;
+      font-weight:700;
+      letter-spacing:0.26em;
+      text-transform:uppercase;
+      color:var(--deep-red);
+      margin-bottom:12px;
+    }
+    .section-title {
+      font-family:'Cardo',serif;
+      font-style:italic;
+      font-weight:700;
+      font-size:clamp(2rem, 5.2vw, 3.2rem);
+      color:var(--navy);
+      line-height:1.1;
+      margin-bottom:14px;
+    }
+    .section-sub {
+      font-family:'Cardo',serif;
+      font-style:italic;
+      font-size:1.08rem;
+      color:var(--text-muted);
+    }
+
+    .products-grid {
+      display:grid;
+      grid-template-columns:1fr;
+      gap:32px;
+      max-width:1180px;
+      margin:0 auto;
+    }
+    @media(min-width:860px){
+      .products-grid { grid-template-columns:1fr 1fr; gap:40px; }
+    }
+
+    .product-card {
+      background:var(--antique-white);
+      border:1px solid var(--border);
+      border-radius:16px;
+      overflow:hidden;
+      display:flex;
+      flex-direction:column;
+      transition:transform var(--transition), box-shadow var(--transition);
+      box-shadow:0 12px 32px rgba(11,35,65,0.07);
+    }
+    .product-card:hover {
+      transform:translateY(-4px);
+      box-shadow:0 20px 48px rgba(11,35,65,0.12);
+    }
+    .pc-img {
+      background:var(--cream);
+      aspect-ratio:1/1;
+      overflow:hidden;
+      position:relative;
+    }
+    .pc-img img {
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      display:block;
+      transition:transform .6s cubic-bezier(.3,1,.3,1);
+    }
+    .product-card:hover .pc-img img { transform:scale(1.03); }
+    .pc-img-fallback {
+      width:100%;
+      height:100%;
+      background:linear-gradient(135deg, var(--cream) 0%, var(--border) 100%);
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:center;
+      color:var(--navy);
+      font-family:'Cardo',serif;
+      font-style:italic;
+      text-align:center;
+      padding:24px;
+    }
+    .pc-img-fallback .ico { font-size:3rem; margin-bottom:10px; }
+    .pc-img-fallback .lbl { font-size:1.1rem; font-weight:700; }
+    .pc-img-fallback .hint { font-size:0.72rem; color:var(--text-muted); margin-top:8px; font-style:normal; letter-spacing:0.04em; }
+
+    .pc-body { padding:28px 26px 30px; flex:1; display:flex; flex-direction:column; }
+
+    .pc-deadline {
+      align-self:flex-start;
+      background:rgba(196,154,74,0.14);
+      color:#8a6a2a;
+      border:1px solid rgba(196,154,74,0.45);
+      font-family:'Jost',sans-serif;
+      font-size:0.65rem;
+      font-weight:700;
+      letter-spacing:0.16em;
+      text-transform:uppercase;
+      padding:5px 12px;
+      border-radius:999px;
+      margin-bottom:14px;
+    }
+
+    .pc-name {
+      font-family:'Cardo',serif;
+      font-style:italic;
+      font-weight:700;
+      font-size:clamp(1.55rem, 3vw, 2.1rem);
+      color:var(--navy);
+      line-height:1.15;
+      margin-bottom:10px;
+    }
+    .pc-desc {
+      font-family:'Jost',sans-serif;
+      font-size:1.05rem;
+      color:var(--text-muted);
+      margin-bottom:22px;
+      line-height:1.65;
+    }
+
+    .pc-meta-row {
+      display:flex;
+      align-items:baseline;
+      gap:16px;
+      flex-wrap:wrap;
+      margin-bottom:18px;
+    }
+    .pc-price {
+      font-family:'Jost',sans-serif;
+      font-weight:700;
+      font-size:1.9rem;
+      color:var(--deep-red);
+    }
+    .pc-sizes {
+      font-family:'Jost',sans-serif;
+      font-size:0.92rem;
+      font-weight:600;
+      color:var(--charcoal);
+    }
+
+    .pc-swatches {
+      display:flex;
+      align-items:center;
+      gap:10px;
+      margin-bottom:24px;
+      flex-wrap:wrap;
+    }
+    .pc-swatches-label {
+      font-family:'Jost',sans-serif;
+      font-size:0.65rem;
+      font-weight:700;
+      letter-spacing:0.18em;
+      text-transform:uppercase;
+      color:var(--text-muted);
+      margin-right:4px;
+    }
+    .swatch {
+      width:30px;
+      height:30px;
+      border-radius:50%;
+      border:2px solid rgba(11,35,65,0.18);
+      cursor:pointer;
+      transition:transform var(--transition), border-color var(--transition), box-shadow var(--transition);
+      position:relative;
+      padding:0;
+    }
+    .swatch:hover { transform:scale(1.1); border-color:var(--navy); }
+    .swatch.active {
+      border-color:var(--navy);
+      box-shadow:0 0 0 2px var(--antique-white), 0 0 0 4px var(--navy);
+    }
+    .swatch-name {
+      font-family:'Jost',sans-serif;
+      font-size:0.78rem;
+      font-weight:600;
+      color:var(--navy);
+      margin-left:auto;
+    }
+
+    .pc-cta { margin-top:auto; }
+    .pc-cta .btn-primary { width:100%; padding:17px 22px; font-size:0.82rem; }
+    .pc-checkout-note {
+      display:flex;
+      align-items:center;
+      gap:8px;
+      justify-content:center;
+      margin-top:12px;
+      font-family:'Jost',sans-serif;
+      font-size:0.85rem;
+      color:var(--text-muted);
+      text-align:center;
+    }
+    .pc-checkout-note svg { color:var(--navy); flex-shrink:0; }
+
+    /* ============================================
+       SECTION 5 — HOW PRE-ORDER WORKS
+    ============================================ */
+    .how {
+      padding:52px 24px;
+      background:var(--cream);
+      border-top:1px solid var(--border);
+    }
+    .how-head { text-align:center; max-width:700px; margin:0 auto 36px; }
+    .how-grid {
+      display:grid;
+      grid-template-columns:1fr;
+      gap:36px;
+      max-width:1100px;
+      margin:0 auto;
+    }
+    @media(min-width:760px){ .how-grid{grid-template-columns:repeat(2,1fr);} }
+    @media(min-width:1020px){ .how-grid{grid-template-columns:repeat(4,1fr);} }
+    .step {
+      text-align:center;
+      padding:0 8px;
+    }
+    .step-num {
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      width:54px;
+      height:54px;
+      border-radius:50%;
+      background:var(--navy);
+      color:var(--cream);
+      font-family:'Cardo',serif;
+      font-weight:700;
+      font-style:italic;
+      font-size:1.4rem;
+      margin-bottom:16px;
+      box-shadow:0 6px 20px rgba(11,35,65,0.18);
+    }
+    .step-title {
+      font-family:'Cardo',serif;
+      font-style:italic;
+      font-weight:700;
+      font-size:1.2rem;
+      color:var(--navy);
+      margin-bottom:8px;
+    }
+    .step-text {
+      font-family:'Jost',sans-serif;
+      font-size:1.05rem;
+      color:var(--text-muted);
+      line-height:1.65;
+    }
+
+    /* ============================================
+       SECTION 6 — PRODUCT DETAILS
+    ============================================ */
+    .details {
+      padding:48px 24px;
+      background:var(--antique-white);
+    }
+    .details-inner { max-width:880px; margin:0 auto; }
+    .details-head { text-align:center; margin-bottom:40px; }
+    .details-grid {
+      display:grid;
+      grid-template-columns:1fr;
+      gap:14px;
+    }
+    @media(min-width:640px){ .details-grid{grid-template-columns:1fr 1fr;} }
+    .detail-item {
+      display:flex;
+      align-items:center;
+      gap:12px;
+      background:var(--cream);
+      border:1px solid var(--border);
+      border-radius:10px;
+      padding:18px 20px;
+      font-family:'Jost',sans-serif;
+      font-size:1.08rem;
+      font-weight:500;
+      color:var(--navy);
+    }
+    .detail-check {
+      flex-shrink:0;
+      width:24px;
+      height:24px;
+      border-radius:50%;
+      background:var(--deep-red);
+      color:var(--cream);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-size:0.7rem;
+      font-weight:700;
+    }
+
+    /* ============================================
+       SECTION 7 — PICKUP & SHIPPING
+    ============================================ */
+    .pickup {
+      padding:52px 24px;
+      background:var(--cream);
+      border-top:1px solid var(--border);
+    }
+    .pickup-inner { max-width:1000px; margin:0 auto; }
+    .pickup-head { text-align:center; margin-bottom:48px; }
+    .pickup-grid {
+      display:grid;
+      grid-template-columns:1fr;
+      gap:22px;
+      margin-bottom:32px;
+    }
+    @media(min-width:760px){ .pickup-grid{grid-template-columns:1fr 1fr;} }
+    .pickup-card {
+      background:var(--antique-white);
+      border:1px solid var(--border);
+      border-radius:14px;
+      padding:32px 28px;
+      text-align:center;
+    }
+    .pickup-icon {
+      font-size:2rem;
+      margin-bottom:12px;
+    }
+    .pickup-card-title {
+      font-family:'Cardo',serif;
+      font-style:italic;
+      font-weight:700;
+      font-size:1.4rem;
+      color:var(--navy);
+      margin-bottom:10px;
+    }
+    .pickup-card-text {
+      font-family:'Jost',sans-serif;
+      font-size:1.05rem;
+      color:var(--text-muted);
+      line-height:1.7;
+    }
+    .pickup-reminder {
+      background:var(--navy);
+      border:none;
+      border-radius:10px;
+      padding:18px 22px;
+      text-align:center;
+      font-family:'Jost',sans-serif;
+      font-style:normal;
+      font-size:0.82rem;
+      font-weight:700;
+      letter-spacing:0.14em;
+      text-transform:uppercase;
+      color:#ffffff;
+    }
+
+    /* ============================================
+       SECTION 8 — FAQ
+    ============================================ */
+    .faq {
+      padding:52px 24px;
+      background:var(--antique-white);
+    }
+    .faq-inner { max-width:780px; margin:0 auto; }
+    .faq-head { text-align:center; margin-bottom:40px; }
+    .faq-list { display:flex; flex-direction:column; }
+    .faq-item {
+      border-bottom:1px solid var(--border);
+    }
+    .faq-item:first-child { border-top:1px solid var(--border); }
+    .faq-q {
+      width:100%;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+      padding:22px 4px;
+      font-family:'Cardo',serif;
+      font-style:italic;
+      font-weight:700;
+      font-size:1.18rem;
+      color:var(--navy);
+      text-align:left;
+      transition:color var(--transition);
+    }
+    .faq-q:hover { color:var(--deep-red); }
+    .faq-ico {
+      font-size:1.5rem;
+      color:var(--deep-red);
+      flex-shrink:0;
+      transition:transform var(--transition);
+      line-height:1;
+    }
+    .faq-item.open .faq-ico { transform:rotate(45deg); }
+    .faq-a {
+      font-family:'Jost',sans-serif;
+      font-size:1.05rem;
+      color:var(--text-muted);
+      line-height:1.75;
+      padding:0 4px 24px;
+      display:none;
+      max-width:680px;
+    }
+    .faq-item.open .faq-a { display:block; }
+
+    /* ============================================
+       SECTION 9 — FINAL CTA
+    ============================================ */
+    .final-cta {
+      padding:60px 24px;
+      background:var(--navy);
+      color:var(--cream);
+      text-align:center;
+      position:relative;
+      overflow:hidden;
+    }
+    .final-cta::before {
+      content:'';
+      position:absolute;
+      inset:0;
+      background-image:
+        radial-gradient(circle at 20% 30%, rgba(196,154,74,0.08), transparent 35%),
+        radial-gradient(circle at 80% 70%, rgba(169,40,36,0.08), transparent 35%);
+      pointer-events:none;
+    }
+    .final-inner { max-width:780px; margin:0 auto; position:relative; }
+    .final-eyebrow {
+      font-family:'Jost',sans-serif;
+      font-size:0.78rem;
+      font-weight:700;
+      letter-spacing:0.28em;
+      text-transform:uppercase;
+      color:var(--muted-gold);
+      margin-bottom:18px;
+    }
+    .final-title {
+      font-family:'Cardo',serif;
+      font-style:italic;
+      font-weight:700;
+      font-size:clamp(2rem, 5.5vw, 3.4rem);
+      color:var(--cream);
+      line-height:1.1;
+      margin-bottom:14px;
+    }
+    .final-sub {
+      font-family:'Cardo',serif;
+      font-style:italic;
+      font-size:1.1rem;
+      color:rgba(246,239,227,0.88);
+      max-width:560px;
+      margin:0 auto 36px;
+    }
+
+    /* Large countdown */
+    .cd-large {
+      display:flex;
+      gap:14px;
+      justify-content:center;
+      flex-wrap:wrap;
+      margin-bottom:40px;
+    }
+    .cd-block {
+      background:var(--cream);
+      border:1px solid var(--muted-gold);
+      border-radius:10px;
+      padding:16px 18px;
+      min-width:84px;
+      text-align:center;
+      box-shadow:0 6px 20px rgba(0,0,0,0.18);
+    }
+    .cd-num {
+      font-family:'Cardo',serif;
+      font-weight:700;
+      font-size:2.1rem;
+      color:var(--deep-red);
+      line-height:1;
+      display:block;
+    }
+    .cd-unit {
+      font-family:'Jost',sans-serif;
+      font-size:0.6rem;
+      font-weight:700;
+      letter-spacing:0.18em;
+      text-transform:uppercase;
+      color:var(--navy);
+      margin-top:6px;
+      display:block;
+    }
+    .cd-closed {
+      font-family:'Cardo',serif;
+      font-style:italic;
+      font-size:1.7rem;
+      color:var(--cream);
+      padding:14px 24px;
+      border:1px solid var(--muted-gold);
+      border-radius:10px;
+      background:rgba(0,0,0,0.18);
+    }
+
+    .final-ctas {
+      display:flex;
+      gap:14px;
+      flex-wrap:wrap;
+      justify-content:center;
+      margin-bottom:24px;
+    }
+    .final-trust {
+      font-family:'Jost',sans-serif;
+      font-size:0.78rem;
+      letter-spacing:0.08em;
+      color:rgba(246,239,227,0.85);
+    }
+    .final-trust .star { color:var(--muted-gold); margin:0 0.4em; }
+
+    /* ============================================
+       SECTION 10 — FOOTER
+    ============================================ */
+    .footer {
+      background:var(--navy);
+      color:var(--cream);
+      padding:48px 24px 28px;
+      border-top:1px solid rgba(246,239,227,0.1);
+    }
+    .footer-inner {
+      max-width:1100px;
+      margin:0 auto;
+      display:flex;
+      flex-direction:column;
+      gap:32px;
+      text-align:center;
+    }
+    @media(min-width:760px){
+      .footer-inner { flex-direction:row; justify-content:space-between; align-items:flex-start; text-align:left; }
+    }
+    .footer-brand { display:flex; flex-direction:column; align-items:center; }
+    @media(min-width:760px){ .footer-brand { align-items:flex-start; } }
+    .footer-brand img {
+      width:80px;
+      height:80px;
+      object-fit:contain;
+      border-radius:50%;
+      margin-bottom:14px;
+      background:var(--cream);
+      padding:4px;
+    }
+    .footer-tag {
+      font-family:'Cardo',serif;
+      font-style:italic;
+      font-size:0.95rem;
+      color:var(--muted-gold);
+      margin-bottom:4px;
+    }
+    .footer-mini {
+      font-family:'Jost',sans-serif;
+      font-size:0.78rem;
+      color:rgba(246,239,227,0.7);
+      letter-spacing:0.04em;
+    }
+    .footer-col {
+      display:flex;
+      flex-direction:column;
+      gap:8px;
+      align-items:center;
+    }
+    @media(min-width:760px){ .footer-col { align-items:flex-end; } }
+    .footer-col-title {
+      font-family:'Jost',sans-serif;
+      font-size:0.66rem;
+      font-weight:700;
+      letter-spacing:0.22em;
+      text-transform:uppercase;
+      color:var(--muted-gold);
+      margin-bottom:6px;
+    }
+    .footer-col a {
+      font-family:'Jost',sans-serif;
+      font-size:0.82rem;
+      font-weight:500;
+      color:rgba(246,239,227,0.88);
+      transition:color var(--transition);
+    }
+    .footer-col a:hover { color:var(--cream); }
+    .footer-bot {
+      border-top:1px solid rgba(246,239,227,0.1);
+      padding-top:22px;
+      margin-top:32px;
+      text-align:center;
+      font-family:'Jost',sans-serif;
+      font-size:0.74rem;
+      color:rgba(246,239,227,0.6);
+      letter-spacing:0.06em;
+    }
+
+    /* ============================================
+       MOBILE STICKY CTA
+    ============================================ */
+    .sticky {
+      position:fixed;
+      bottom:0; left:0; right:0;
+      background:var(--cream);
+      border-top:1px solid var(--border);
+      padding:11px 16px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      z-index:80;
+      transform:translateY(100%);
+      transition:transform var(--transition);
+      box-shadow:0 -8px 24px rgba(11,35,65,0.10);
+    }
+    .sticky.on { transform:translateY(0); }
+    .sticky-txt {
+      flex:1;
+      min-width:0;
+    }
+    .sticky-txt strong {
+      display:block;
+      font-family:'Cardo',serif;
+      font-style:italic;
+      font-weight:700;
+      color:var(--navy);
+      font-size:0.95rem;
+      line-height:1.15;
+    }
+    .sticky-txt span {
+      font-size:0.7rem;
+      color:var(--deep-red);
+      font-weight:700;
+      letter-spacing:0.1em;
+    }
+    .sticky .btn-primary { padding:13px 18px; font-size:0.72rem; box-shadow:none; }
+    @media(min-width:760px){ .sticky{display:none;} }
+    /* ============================================
+       PRODUCT CARD — CART CONTROLS
+    ============================================ */
+    .cart-color-select,
+    .cart-size-select {
+      display:block;
+      width:100%;
+      padding:10px 12px;
+      border:1.5px solid var(--border);
+      border-radius:8px;
+      background:var(--cream);
+      font-family:'Jost',sans-serif;
+      font-size:0.95rem;
+      color:var(--charcoal);
+      margin-bottom:10px;
+      cursor:pointer;
+    }
+    .pc-cta-row {
+      display:flex;
+      gap:10px;
+      align-items:center;
+      margin-bottom:10px;
+    }
+    .cart-qty-input {
+      width:68px;
+      padding:10px 8px;
+      border:1.5px solid var(--border);
+      border-radius:8px;
+      background:var(--cream);
+      font-family:'Jost',sans-serif;
+      font-size:0.95rem;
+      color:var(--charcoal);
+      text-align:center;
+      flex-shrink:0;
+    }
+    .pc-cta-row .add-to-cart-btn {
+      flex:1;
+    }
+    /* ============================================
+       CART DRAWER + BACKDROP (embedded so local
+       file:// preview works without cart.css)
+    ============================================ */
+    #cart-backdrop {
+      position:fixed;
+      inset:0;
+      background:rgba(0,0,0,0.4);
+      opacity:0;
+      pointer-events:none;
+      transition:opacity 0.25s ease;
+      z-index:998;
+    }
+    #cart-backdrop.open { opacity:1; pointer-events:auto; }
+
+    #cart-drawer {
+      position:fixed;
+      top:0;
+      right:-100%;
+      width:min(400px,100vw);
+      height:100vh;
+      background:var(--cream);
+      border-left:3px solid var(--navy);
+      box-shadow:-8px 0 24px rgba(0,0,0,0.2);
+      transition:right 0.3s ease;
+      z-index:1000;
+      display:flex;
+      flex-direction:column;
+      padding:1.25rem;
+      overflow-y:auto;
+    }
+    #cart-drawer.open { right:0; }
+
+    #cart-drawer h2 {
+      margin:0 0 1rem;
+      color:var(--navy);
+      font-family:'Cardo',serif;
+      font-style:italic;
+      font-size:1.3rem;
+    }
+    #cart-close-btn {
+      position:absolute;
+      top:1rem;
+      right:1rem;
+      background:none;
+      border:none;
+      font-size:1.5rem;
+      line-height:1;
+      cursor:pointer;
+      color:var(--navy);
+    }
+    #cart-empty-msg { color:#555; padding:1rem 0; }
+    .cart-line {
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:0.75rem;
+      padding:0.85rem 0;
+      border-bottom:1px solid rgba(11,35,65,0.15);
+    }
+    .cart-line-info span { display:block; font-size:0.85rem; color:#555; margin-top:0.15rem; }
+    .cart-line-controls { display:flex; align-items:center; gap:0.6rem; }
+    .cart-qty-edit { width:48px; text-align:center; border:1px solid rgba(11,35,65,0.15); border-radius:4px; padding:0.25rem; }
+    .cart-line-price { font-weight:600; color:var(--navy); min-width:3.5em; text-align:right; }
+    .cart-remove-btn { background:none; border:none; font-size:1.25rem; line-height:1; cursor:pointer; color:var(--deep-red); }
+    #cart-summary { margin-top:auto; padding-top:1rem; border-top:2px solid var(--navy); }
+    #cart-subtotal-row { display:flex; justify-content:space-between; font-weight:600; color:var(--navy); margin-bottom:0.75rem; }
+    #cart-checkout-btn {
+      width:100%;
+      background:var(--navy);
+      color:#fff;
+      padding:0.95rem;
+      border:none;
+      border-radius:4px;
+      font-weight:600;
+      font-size:1rem;
+      font-family:inherit;
+      cursor:pointer;
+    }
+    #cart-checkout-btn:disabled { opacity:0.5; cursor:not-allowed; }
+    #cart-shipping-note { font-size:0.8rem; color:#555; margin-top:0.6rem; text-align:center; }
+
+    /* Cart toggle lives in the header — override cart.css fixed positioning */
+    #cart-toggle-btn {
+      position:static !important;
+      bottom:auto !important;
+      right:auto !important;
+      z-index:auto !important;
+      background:transparent !important;
+      color:var(--navy) !important;
+      box-shadow:none !important;
+      padding:8px 14px !important;
+      border-radius:8px !important;
+      font-family:'Jost',sans-serif !important;
+      font-size:0.78rem !important;
+      font-weight:700 !important;
+      letter-spacing:0.12em !important;
+      border:1.5px solid var(--border) !important;
+      display:inline-flex !important;
+      align-items:center !important;
+      gap:6px !important;
+      min-height:44px !important;
+      cursor:pointer !important;
+      white-space:nowrap !important;
+      transition:border-color 0.2s,background 0.2s !important;
+    }
+    #cart-toggle-btn:hover {
+      border-color:var(--navy) !important;
+      background:var(--antique-white) !important;
+    }
+    #cart-toggle-btn #cart-count {
+      background:var(--deep-red) !important;
+      color:#fff !important;
+      border-radius:999px !important;
+      min-width:1.4em !important;
+      padding:0 0.4em !important;
+      font-size:0.8em !important;
+      margin-left:0 !important;
+    }
+  </style>
+</head>
+<body>
+
+<!-- ╔══════════════════════════════════════════════════════════════════════════╗
+     ║  COMPONENT: AnnouncementBar                                              ║
+     ╚══════════════════════════════════════════════════════════════════════════╝ -->
+<div class="bar" role="banner">
+  <div class="bar-track" aria-hidden="true">
+    <span>Limited Pre-Order · Closes June 24 at 11:00pm</span>
+    <span>Local Pickup or Shipping</span>
+    <span>Secure Checkout by Stripe</span>
+    <span>$28 · Sizes S–4XL · Youth YM–YXL</span>
+    <span>Printed in Tennessee</span>
+    <span>Limited Pre-Order · Closes June 24 at 11:00pm</span>
+    <span>Local Pickup or Shipping</span>
+    <span>Secure Checkout by Stripe</span>
+    <span>$28 · Sizes S–4XL · Youth YM–YXL</span>
+    <span>Printed in Tennessee</span>
+  </div>
+</div>
+
+<!-- ╔══════════════════════════════════════════════════════════════════════════╗
+     ║  COMPONENT: Header                                                       ║
+     ╚══════════════════════════════════════════════════════════════════════════╝ -->
+<header class="header">
+  <a href="#" class="header-logo" aria-label="Floyd & Co. Apparel home">
+    <img src="images/logo-floyd-co-round.png" alt="Floyd & Co. Apparel logo">
+  </a>
+  <nav class="nav-links" aria-label="Primary">
+    <a href="#products">Designs</a>
+    <a href="#how-it-works">How It Works</a>
+    <a href="#faq">FAQ</a>
+  </nav>
+  <div class="header-right">
+    <div class="header-cd" aria-label="Pre-order closing countdown">
+      <span id="navCd">--D : --H : --M</span>
+    </div>
+    <button id="cart-toggle-btn" type="button" aria-label="Open cart">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+      Cart <span id="cart-count">0</span>
+    </button>
+    <a href="#products" class="btn-primary" data-cta="hero-nav">Pre-Order Now</a>
+  </div>
+</header>
+
+<!-- ╔══════════════════════════════════════════════════════════════════════════╗
+     ║  COMPONENT: Hero                                                         ║
+     ╚══════════════════════════════════════════════════════════════════════════╝ -->
+<section class="hero" aria-labelledby="hero-title">
+  <div class="hero-bg" aria-hidden="true"></div>
+  <div class="hero-overlay" aria-hidden="true"></div>
+  <div class="hero-inner">
+    <div class="hero-eyebrow">1776–2026 Limited Pre-Order</div>
+    <h1 id="hero-title" class="hero-title">America's 250th Anniversary</h1>
+    <p class="hero-sub">
+      Pre-order before June 24 at 11:00pm. Local pickup or shipping available.
+    </p>
+    <div class="hero-ctas">
+      <a href="#products" class="btn-primary btn-large">Pick Your Design, Size, and Color Now</a>
+    </div>
+    <p class="hero-trust">
+      <span class="star">★</span> Secure Checkout with Stripe &nbsp;·&nbsp; Local Pickup Available &nbsp;·&nbsp; Flat Rate $6 Shipping <span class="star">★</span>
+    </p>
+  </div>
+</section>
+
+<!-- ╔══════════════════════════════════════════════════════════════════════════╗
+     ║  COMPONENT: Products  (the conversion engine)                            ║
+     ╚══════════════════════════════════════════════════════════════════════════╝ -->
+<section class="products" id="products" aria-label="Shop the 250 Collection">
+  <div class="products-grid">
+
+    <!-- CARD A — AMERICA 250 EAGLE TEE -->
+    <article class="product-card" data-design="eagle" data-product-id="eagle">
+      <div class="pc-img">
+        <img id="pcEagleImg" src="images/eagle-washed-denim.png" alt="America 250 Eagle Tee — Washed Denim colorway, back print: AMERICA eagle with 250 YEARS OF FREEDOM"
+          onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div class="pc-img-fallback" style="display:none">
+          <div class="ico">🦅</div>
+          <div class="lbl">America 250 Eagle Tee</div>
+          <div class="hint">Photo coming soon for this color</div>
+        </div>
+      </div>
+      <div class="pc-body">
+        <span class="pc-deadline">Pre-Order Closes June 24 at 11:00pm</span>
+        <h3 class="pc-name">America 250 Eagle Tee</h3>
+        <p class="pc-desc">Vintage eagle back print with a clean 1776–2026 front chest design. Printed on a premium, relaxed-fit tee.</p>
+
+        <div class="pc-meta-row">
+          <div class="pc-price">$28</div>
+          <div class="pc-sizes">Sizes S–4XL · Youth YM–YXL</div>
+        </div>
+
+        <div class="pc-swatches" role="group" aria-label="Eagle Tee color">
+          <span class="pc-swatches-label">Color</span>
+          <button class="swatch active" type="button" style="background:#7a99b8" data-img="images/eagle-washed-denim.png" data-name="Washed Denim" aria-label="Washed Denim"></button>
+          <button class="swatch" type="button" style="background:#f1e9d6" data-img="images/eagle-ivory.png" data-name="Ivory" aria-label="Ivory"></button>
+          <button class="swatch" type="button" style="background:#ffffff;border-color:#cdc6b8" data-img="images/eagle-white.png" data-name="White" aria-label="White"></button>
+          <span class="swatch-name" id="pcEagleColorName">Washed Denim</span>
+        </div>
+
+        <div class="pc-cta">
+          <select class="cart-color-select" aria-label="Select color">
+            <option value="Washed Denim" data-img="images/eagle-washed-denim.png" selected>Washed Denim</option>
+            <option value="Ivory" data-img="images/eagle-ivory.png">Ivory</option>
+            <option value="White" data-img="images/eagle-white.png">White</option>
+          </select>
+          <select class="cart-size-select" aria-label="Select size">
+            <option value="S">Adult S</option>
+            <option value="M">Adult M</option>
+            <option value="L">Adult L</option>
+            <option value="XL">Adult XL</option>
+            <option value="2XL">Adult 2XL (+$2)</option>
+            <option value="3XL">Adult 3XL (+$2)</option>
+            <option value="4XL">Adult 4XL (+$2)</option>
+            <option value="YM">Youth YM</option>
+            <option value="YL">Youth YL</option>
+            <option value="YXL">Youth YXL</option>
+          </select>
+          <div class="pc-cta-row">
+            <input type="number" class="cart-qty-input" value="1" min="1" max="25" aria-label="Quantity">
+            <button type="button" class="add-to-cart-btn btn-primary">Add to Cart</button>
+          </div>
+          <div class="pc-checkout-note">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+            Secure checkout with Stripe.
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- CARD B — WE THE PEOPLE 250 TEE -->
+    <article class="product-card" data-design="wtp" data-product-id="wtp">
+      <div class="pc-img">
+        <img id="pcWtpImg" src="images/wtp-black.png" alt="We The People 250 Tee — Black colorway, back print: We the People distressed flag with 250 YEARS 2026"
+          onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div class="pc-img-fallback" style="display:none">
+          <div class="ico">🇺🇸</div>
+          <div class="lbl">We The People 250 Tee</div>
+          <div class="hint">Photo coming soon for this color</div>
+        </div>
+      </div>
+      <div class="pc-body">
+        <span class="pc-deadline">Pre-Order Closes June 24 at 11:00pm</span>
+        <h3 class="pc-name">We The People 250 Tee</h3>
+        <p class="pc-desc">Distressed flag-inspired back print with a 1776 front chest design. Built for a bold, vintage patriotic look.</p>
+
+        <div class="pc-meta-row">
+          <div class="pc-price">$28</div>
+          <div class="pc-sizes">Sizes S–4XL · Youth YM–YXL</div>
+        </div>
+
+        <div class="pc-swatches" role="group" aria-label="We The People color">
+          <span class="pc-swatches-label">Color</span>
+          <button class="swatch active" type="button" style="background:#161616" data-img="images/wtp-black.png" data-name="Black" aria-label="Black"></button>
+          <button class="swatch" type="button" style="background:#1c2742" data-img="images/wtp-navy.png" data-name="True Navy" aria-label="True Navy"></button>
+          <button class="swatch" type="button" style="background:#3f4347" data-img="images/wtp-graphite.png" data-name="Graphite" aria-label="Graphite"></button>
+          <span class="swatch-name" id="pcWtpColorName">Black</span>
+        </div>
+
+        <div class="pc-cta">
+          <select class="cart-color-select" aria-label="Select color">
+            <option value="Black" data-img="images/wtp-black.png" selected>Black</option>
+            <option value="Graphite" data-img="images/wtp-graphite.png">Graphite</option>
+            <option value="True Navy" data-img="images/wtp-navy.png">True Navy</option>
+          </select>
+          <select class="cart-size-select" aria-label="Select size">
+            <option value="S">Adult S</option>
+            <option value="M">Adult M</option>
+            <option value="L">Adult L</option>
+            <option value="XL">Adult XL</option>
+            <option value="2XL">Adult 2XL (+$2)</option>
+            <option value="3XL">Adult 3XL (+$2)</option>
+            <option value="4XL">Adult 4XL (+$2)</option>
+            <option value="YM">Youth YM</option>
+            <option value="YL">Youth YL</option>
+            <option value="YXL">Youth YXL</option>
+          </select>
+          <div class="pc-cta-row">
+            <input type="number" class="cart-qty-input" value="1" min="1" max="25" aria-label="Quantity">
+            <button type="button" class="add-to-cart-btn btn-primary">Add to Cart</button>
+          </div>
+          <div class="pc-checkout-note">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+            Secure checkout with Stripe.
+          </div>
+        </div>
+      </div>
+    </article>
+
+  </div>
+</section>
+
+<!-- ╔══════════════════════════════════════════════════════════════════════════╗
+     ║  COMPONENT: HowItWorks                                                   ║
+     ╚══════════════════════════════════════════════════════════════════════════╝ -->
+<section class="how" id="how-it-works" aria-labelledby="how-title">
+  <div class="how-head">
+    <div class="section-eyebrow">Simple Pre-Order Flow</div>
+    <h2 class="section-title" id="how-title">How Pre-Order Works</h2>
+  </div>
+  <div class="how-grid">
+    <div class="step">
+      <div class="step-num">1</div>
+      <div class="step-title">Pick your design</div>
+      <p class="step-text">Choose either the America 250 Eagle Tee or the We The People 250 Tee.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">2</div>
+      <div class="step-title">Choose your size and color</div>
+      <p class="step-text">Pick your color, size, and quantity right on the product card, then add to cart.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">3</div>
+      <div class="step-title">Select pickup or shipping</div>
+      <p class="step-text">Local pickup is available in Selmer, Tennessee. Shipping is available for customers outside the local area.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">4</div>
+      <div class="step-title">Shirts are printed after the deadline</div>
+      <p class="step-text">Pre-order closes June 24 at 11:00pm. Orders are printed after the pre-order window closes.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ╔══════════════════════════════════════════════════════════════════════════╗
+     ║  COMPONENT: ProductDetails                                               ║
+     ╚══════════════════════════════════════════════════════════════════════════╝ -->
+<section class="details" aria-labelledby="details-title">
+  <div class="details-inner">
+    <div class="details-head">
+      <div class="section-eyebrow">What You're Buying</div>
+      <h2 class="section-title" id="details-title">Product Details</h2>
+    </div>
+    <div class="details-grid">
+      <div class="detail-item"><span class="detail-check">✓</span>Premium relaxed-fit tee</div>
+      <div class="detail-item"><span class="detail-check">✓</span>Vintage patriotic front and back print</div>
+      <div class="detail-item"><span class="detail-check">✓</span>Unisex sizing</div>
+      <div class="detail-item"><span class="detail-check">✓</span>Sizes S–4XL · Youth YM–YXL</div>
+      <div class="detail-item"><span class="detail-check">✓</span>Pickup or shipping available</div>
+      <div class="detail-item"><span class="detail-check">✓</span>Printed by Floyd &amp; Co. Apparel in Tennessee</div>
+      <div class="detail-item" style="grid-column:1/-1;justify-content:center"><span class="detail-check">✓</span>Secure checkout through Stripe</div>
+    </div>
+  </div>
+</section>
+
+<!-- ╔══════════════════════════════════════════════════════════════════════════╗
+     ║  COMPONENT: PickupShipping                                               ║
+     ╚══════════════════════════════════════════════════════════════════════════╝ -->
+<section class="pickup" aria-labelledby="pickup-title">
+  <div class="pickup-inner">
+    <div class="pickup-head">
+      <div class="section-eyebrow">Two Ways to Receive Your Tee</div>
+      <h2 class="section-title" id="pickup-title">Pickup or Shipping</h2>
+    </div>
+    <div class="pickup-grid">
+      <div class="pickup-card">
+        <div class="pickup-icon">📍</div>
+        <div class="pickup-card-title">Local Pickup</div>
+        <p class="pickup-card-text">Pickup will be available in Selmer, Tennessee after orders are printed. Customers will receive pickup updates by text or email.</p>
+      </div>
+      <div class="pickup-card">
+        <div class="pickup-icon">📦</div>
+        <div class="pickup-card-title">Shipping</div>
+        <p class="pickup-card-text">Shipping is available for customers outside the local pickup area. Shipping is added at checkout.</p>
+      </div>
+    </div>
+    <div class="pickup-reminder">
+      Please enter the correct phone number and email at checkout.
+    </div>
+  </div>
+</section>
+
+<!-- ╔══════════════════════════════════════════════════════════════════════════╗
+     ║  COMPONENT: FAQ                                                          ║
+     ╚══════════════════════════════════════════════════════════════════════════╝ -->
+<section class="faq" id="faq" aria-labelledby="faq-title">
+  <div class="faq-inner">
+    <div class="faq-head">
+      <div class="section-eyebrow">Common Questions</div>
+      <h2 class="section-title" id="faq-title">Frequently Asked Questions</h2>
+    </div>
+    <div class="faq-list">
+      <div class="faq-item">
+        <button class="faq-q" type="button" aria-expanded="false">When does the pre-order close? <span class="faq-ico" aria-hidden="true">+</span></button>
+        <div class="faq-a">Pre-order closes June 24 at 11:00pm.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" type="button" aria-expanded="false">When will I get my shirt? <span class="faq-ico" aria-hidden="true">+</span></button>
+        <div class="faq-a">This is a pre-order. Shirts will be printed after the pre-order closes. Pickup and shipping updates will be sent by text or email.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" type="button" aria-expanded="false">How do I choose my size and color? <span class="faq-ico" aria-hidden="true">+</span></button>
+        <div class="faq-a">Select your color, size, and quantity directly on the product card, then click Add to Cart. Pickup or shipping is chosen on the Stripe checkout page.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" type="button" aria-expanded="false">Do the shirts run true to size? <span class="faq-ico" aria-hidden="true">+</span></button>
+        <div class="faq-a">These are relaxed unisex tees. Most customers order their normal size. Size up for an oversized fit.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" type="button" aria-expanded="false">Can I pick up locally? <span class="faq-ico" aria-hidden="true">+</span></button>
+        <div class="faq-a">Yes. Local pickup is available in Selmer, Tennessee.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" type="button" aria-expanded="false">Is payment secure? <span class="faq-ico" aria-hidden="true">+</span></button>
+        <div class="faq-a">Yes. Checkout is processed securely through Stripe.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" type="button" aria-expanded="false">Can I change my order? <span class="faq-ico" aria-hidden="true">+</span></button>
+        <div class="faq-a">Changes are only available before the order is printed. Please contact Floyd &amp; Co. Apparel as soon as possible if you need to update an order.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ╔══════════════════════════════════════════════════════════════════════════╗
+     ║  COMPONENT: FinalCTA (urgency layer + large countdown)                   ║
+     ╚══════════════════════════════════════════════════════════════════════════╝ -->
+<section class="final-cta" aria-labelledby="final-title">
+  <div class="final-inner">
+    <div class="final-eyebrow">★ Final Days ★</div>
+    <h2 class="final-title" id="final-title">Last Day to Pre-Order: June 24 at 11:00pm</h2>
+    <p class="final-sub">Choose your America 250 design before the order closes. Extra inventory is not guaranteed.</p>
+
+    <div class="cd-large" id="cd" aria-live="polite" aria-label="Time remaining until pre-order closes">
+      <div class="cd-block"><span class="cd-num" id="cd-d">--</span><span class="cd-unit">Days</span></div>
+      <div class="cd-block"><span class="cd-num" id="cd-h">--</span><span class="cd-unit">Hours</span></div>
+      <div class="cd-block"><span class="cd-num" id="cd-m">--</span><span class="cd-unit">Mins</span></div>
+      <div class="cd-block"><span class="cd-num" id="cd-s">--</span><span class="cd-unit">Secs</span></div>
+    </div>
+
+    <div class="final-ctas">
+      <a href="#products" class="btn-primary btn-large">Eagle Tee — $28</a>
+      <a href="#products" class="btn-secondary btn-large">We The People Tee — $28</a>
+    </div>
+    <p class="final-trust">
+      <span class="star">★</span>Secure checkout by Stripe<span class="star">·</span>Printed in Tennessee
+    </p>
+  </div>
+</section>
+
+<!-- ╔══════════════════════════════════════════════════════════════════════════╗
+     ║  COMPONENT: Footer                                                       ║
+     ╚══════════════════════════════════════════════════════════════════════════╝ -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <img src="images/logo-floyd-co-round.png" alt="Floyd & Co. Apparel">
+      <div class="footer-tag">Printed in Tennessee</div>
+      <div class="footer-mini">Secure checkout by Stripe</div>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">Shop</div>
+      <a href="#products">Designs</a>
+      <a href="#how-it-works">How It Works</a>
+      <a href="#faq">FAQ</a>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">Connect</div>
+      <a href="https://www.facebook.com/profile.php?id=61591094188814" target="_blank" rel="noopener">Facebook</a>
+      <a href="mailto:alek@floydcoapparel.com">alek@floydcoapparel.com</a>
+    </div>
+  </div>
+  <div class="footer-bot">
+    © 2026 Floyd &amp; Co. Apparel · floydcoapparel.com
+  </div>
+</footer>
+
+<!-- Mobile sticky CTA -->
+<div class="sticky" id="sticky" aria-hidden="true">
+  <div class="sticky-txt">
+    <strong>America 250 Collection</strong>
+    <span>From $28 · Closes June 24 at 11:00pm</span>
+  </div>
+  <a href="#products" class="btn-primary">Pre-Order</a>
+</div>
+
+<script>
+  // ============================================
+  // COUNTDOWN — Target: June 24 2026 11:00 PM CDT (UTC-5)
+  // = 2026-06-25T04:00:00Z
+  // Drives BOTH the header small countdown and the Final CTA large countdown.
+  // ============================================
+  (function(){
+    var deadline = new Date('2026-06-25T04:00:00Z').getTime();
+
+    function tick(){
+      var left = deadline - Date.now();
+      var navCd = document.getElementById('navCd');
+      var cd = document.getElementById('cd');
+
+      if (left <= 0) {
+        if (navCd) navCd.textContent = 'CLOSED';
+        if (cd) cd.innerHTML = '<div class="cd-closed">Pre-Order Closed</div>';
+        return;
+      }
+
+      var d = Math.floor(left / 86400000);
+      var h = Math.floor((left % 86400000) / 3600000);
+      var m = Math.floor((left % 3600000) / 60000);
+      var s = Math.floor((left % 60000) / 1000);
+
+      var dd = String(d).padStart(2,'0');
+      var hh = String(h).padStart(2,'0');
+      var mm = String(m).padStart(2,'0');
+      var ss = String(s).padStart(2,'0');
+
+      // Small header countdown
+      if (navCd) navCd.textContent = dd + 'D : ' + hh + 'H : ' + mm + 'M';
+
+      // Large final-CTA countdown
+      var d_el = document.getElementById('cd-d');
+      var h_el = document.getElementById('cd-h');
+      var m_el = document.getElementById('cd-m');
+      var s_el = document.getElementById('cd-s');
+      if (d_el) d_el.textContent = dd;
+      if (h_el) h_el.textContent = hh;
+      if (m_el) m_el.textContent = mm;
+      if (s_el) s_el.textContent = ss;
+    }
+    tick();
+    setInterval(tick, 1000);
+  })();
+
+  // ============================================
+  // COLOR SELECT → image swap (per card)
+  // ============================================
+  document.querySelectorAll('.cart-color-select').forEach(function(select){
+    select.addEventListener('change', function(){
+      var card = select.closest('[data-product-id]');
+      if (!card) return;
+      var imgEl = card.querySelector('.pc-img img');
+      var fallbackEl = card.querySelector('.pc-img-fallback');
+      var nameEl = card.querySelector('.swatch-name');
+      var selectedOpt = select.options[select.selectedIndex];
+      var src = selectedOpt ? selectedOpt.dataset.img : null;
+      var colorName = selectedOpt ? selectedOpt.value : '';
+      if (imgEl && src) {
+        imgEl.style.display = '';
+        if (fallbackEl) fallbackEl.style.display = 'none';
+        imgEl.src = src;
+        imgEl.onerror = function(){
+          this.style.display = 'none';
+          if (fallbackEl) fallbackEl.style.display = 'flex';
+        };
+      }
+      // Sync the swatch active state and label
+      card.querySelectorAll('.swatch').forEach(function(sw){
+        sw.classList.toggle('active', sw.dataset.name === colorName || sw.getAttribute('aria-label') === colorName);
+      });
+      if (nameEl) nameEl.textContent = colorName;
+    });
+  });
+
+  // ============================================
+  // COLOR SWATCH → image swap (per card) + syncs select
+  // ============================================
+  document.querySelectorAll('.product-card').forEach(function(card){
+    var imgEl = card.querySelector('.pc-img img');
+    var fallbackEl = card.querySelector('.pc-img-fallback');
+    var fallbackHint = fallbackEl ? fallbackEl.querySelector('.hint') : null;
+    var nameEl = card.querySelector('.swatch-name');
+
+    var colorSelect = card.querySelector('.cart-color-select');
+
+    card.querySelectorAll('.swatch').forEach(function(sw){
+      sw.addEventListener('click', function(){
+        card.querySelectorAll('.swatch').forEach(function(x){ x.classList.remove('active'); });
+        this.classList.add('active');
+        var src = this.dataset.img;
+        var colorName = this.dataset.name;
+        if (imgEl) {
+          imgEl.style.display = '';
+          if (fallbackEl) fallbackEl.style.display = 'none';
+          imgEl.src = src;
+          imgEl.onerror = function(){
+            this.style.display = 'none';
+            if (fallbackEl) {
+              fallbackEl.style.display = 'flex';
+              if (fallbackHint) {
+                fallbackHint.textContent = 'Add ' + src.split('/').pop() + ' to images/ folder';
+              }
+            }
+          };
+        }
+        if (nameEl) nameEl.textContent = colorName;
+        // Keep the dropdown in sync so Add to Cart sends the right color
+        if (colorSelect) colorSelect.value = colorName;
+      });
+    });
+  });
+
+  // ============================================
+  // FAQ accordion
+  // ============================================
+  document.querySelectorAll('.faq-q').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var item = this.closest('.faq-item');
+      var open = item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(function(i){
+        i.classList.remove('open');
+        var q = i.querySelector('.faq-q');
+        if (q) q.setAttribute('aria-expanded', 'false');
+      });
+      if (!open) {
+        item.classList.add('open');
+        this.setAttribute('aria-expanded', 'true');
+      }
+    });
+  });
+
+  // ============================================
+  // Mobile sticky CTA
+  // ============================================
+  (function(){
+    var stickyEl = document.getElementById('sticky');
+    var heroEl = document.querySelector('.hero');
+    if (!stickyEl || !heroEl) return;
+    window.addEventListener('scroll', function(){
+      if (heroEl.getBoundingClientRect().bottom < 0) {
+        stickyEl.classList.add('on');
+        stickyEl.setAttribute('aria-hidden', 'false');
+      } else {
+        stickyEl.classList.remove('on');
+        stickyEl.setAttribute('aria-hidden', 'true');
+      }
+    }, { passive: true });
+  })();
+</script>
+
+<script>
+/* ============================================================
+   Floyd & Co. Apparel — Multi-Item Cart (inlined for local preview)
+   ============================================================ */
+(function () {
+  const CART_KEY = "floydco_cart_v1";
+  const CHECKOUT_ENDPOINT = "/api/create-checkout-session";
+
+  const PRODUCT_NAMES = {
+    eagle: "America 250 Eagle Tee",
+    wtp: "We The People 250 Tee",
+  };
+  const SURCHARGE_SIZES = new Set(["2XL", "3XL", "4XL"]);
+  const BASE_PRICE = 28;
+  const SURCHARGE = 2;
+  const MAX_QTY = 25;
+
+  function loadCart() {
+    try { return JSON.parse(localStorage.getItem(CART_KEY)) || []; }
+    catch { return []; }
+  }
+  function saveCart(cart) { localStorage.setItem(CART_KEY, JSON.stringify(cart)); }
+  function unitPrice(size) { return BASE_PRICE + (SURCHARGE_SIZES.has(size) ? SURCHARGE : 0); }
+  function makeId() { return (crypto.randomUUID && crypto.randomUUID()) || `${Date.now()}-${Math.random()}`; }
+
+  function addItem(productId, color, size, qty) {
+    const cart = loadCart();
+    const existing = cart.find((i) => i.productId === productId && i.color === color && i.size === size);
+    if (existing) {
+      existing.qty = Math.min(MAX_QTY, existing.qty + qty);
+    } else {
+      cart.push({ id: makeId(), productId, color, size, qty: Math.min(MAX_QTY, qty) });
+    }
+    saveCart(cart);
+    renderCart();
+    openDrawer();
+  }
+
+  function removeItem(id) {
+    saveCart(loadCart().filter((i) => i.id !== id));
+    renderCart();
+  }
+
+  function updateQty(id, qty) {
+    const cart = loadCart();
+    const item = cart.find((i) => i.id === id);
+    if (item) { item.qty = Math.max(1, Math.min(MAX_QTY, qty)); saveCart(cart); renderCart(); }
+  }
+
+  function subtotal() {
+    return loadCart().reduce((sum, i) => sum + unitPrice(i.size) * i.qty, 0);
+  }
+
+  function renderCart() {
+    const cart = loadCart();
+    const list = document.getElementById("cart-items");
+    const countBadge = document.getElementById("cart-count");
+    const subtotalEl = document.getElementById("cart-subtotal");
+    const checkoutBtn = document.getElementById("cart-checkout-btn");
+    const emptyMsg = document.getElementById("cart-empty-msg");
+    if (!list) return;
+
+    list.innerHTML = "";
+    if (emptyMsg) emptyMsg.style.display = cart.length === 0 ? "block" : "none";
+
+    cart.forEach((item) => {
+      const row = document.createElement("div");
+      row.className = "cart-line";
+      row.innerHTML = `
+        <div class="cart-line-info">
+          <strong>${PRODUCT_NAMES[item.productId] || item.productId}</strong>
+          <span>${item.color} · ${item.size}</span>
+        </div>
+        <div class="cart-line-controls">
+          <input type="number" min="1" max="${MAX_QTY}" value="${item.qty}" data-id="${item.id}" class="cart-qty-edit" aria-label="Quantity" />
+          <span class="cart-line-price">$${(unitPrice(item.size) * item.qty).toFixed(2)}</span>
+          <button type="button" data-id="${item.id}" class="cart-remove-btn" aria-label="Remove this item">&times;</button>
+        </div>`;
+      list.appendChild(row);
+    });
+
+    if (countBadge) countBadge.textContent = String(cart.reduce((n, i) => n + i.qty, 0));
+    if (subtotalEl) subtotalEl.textContent = `$${subtotal().toFixed(2)}`;
+    if (checkoutBtn) checkoutBtn.disabled = cart.length === 0;
+
+    list.querySelectorAll(".cart-remove-btn").forEach((btn) =>
+      btn.addEventListener("click", () => removeItem(btn.dataset.id))
+    );
+    list.querySelectorAll(".cart-qty-edit").forEach((input) =>
+      input.addEventListener("change", () => updateQty(input.dataset.id, parseInt(input.value, 10)))
+    );
+  }
+
+  function openDrawer() {
+    document.getElementById("cart-drawer")?.classList.add("open");
+    document.getElementById("cart-backdrop")?.classList.add("open");
+  }
+  function closeDrawer() {
+    document.getElementById("cart-drawer")?.classList.remove("open");
+    document.getElementById("cart-backdrop")?.classList.remove("open");
+  }
+
+  async function checkout() {
+    const cart = loadCart();
+    if (cart.length === 0) return;
+    const checkoutBtn = document.getElementById("cart-checkout-btn");
+    const originalLabel = checkoutBtn ? checkoutBtn.textContent : "";
+    if (checkoutBtn) { checkoutBtn.disabled = true; checkoutBtn.textContent = "Redirecting to secure checkout…"; }
+    try {
+      const res = await fetch(CHECKOUT_ENDPOINT, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ items: cart.map((i) => ({ productId: i.productId, color: i.color, size: i.size, qty: i.qty })) }),
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || "Checkout failed");
+      window.location.href = data.url;
+    } catch (err) {
+      alert(`Checkout couldn’t start: ${err.message}. Please try again, or text us if it keeps happening.`);
+      if (checkoutBtn) { checkoutBtn.disabled = false; checkoutBtn.textContent = originalLabel; }
+    }
+  }
+
+  function init() {
+    document.querySelectorAll(".add-to-cart-btn").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const card = btn.closest("[data-product-id]");
+        if (!card) return;
+        const productId = card.dataset.productId;
+        const color = card.querySelector(".cart-color-select")?.value;
+        const size = card.querySelector(".cart-size-select")?.value;
+        const qty = parseInt(card.querySelector(".cart-qty-input")?.value || "1", 10);
+        if (!color || !size || !qty || qty < 1) { alert("Pick a color, size, and quantity first."); return; }
+        addItem(productId, color, size, qty);
+      });
+    });
+    document.getElementById("cart-toggle-btn")?.addEventListener("click", openDrawer);
+    document.getElementById("cart-close-btn")?.addEventListener("click", closeDrawer);
+    document.getElementById("cart-backdrop")?.addEventListener("click", closeDrawer);
+    document.getElementById("cart-checkout-btn")?.addEventListener("click", checkout);
+    renderCart();
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", init);
+  } else {
+    init();
+  }
+
+  window.FloydCart = { loadCart, addItem, removeItem, updateQty, subtotal };
+})();
+</script>
+
+<div id="cart-backdrop"></div>
+
+<aside id="cart-drawer" aria-label="Shopping cart">
+  <button id="cart-close-btn" type="button" aria-label="Close cart">&times;</button>
+  <h2>Your Order</h2>
+  <p id="cart-empty-msg">Your cart is empty.</p>
+  <div id="cart-items"></div>
+  <div id="cart-summary">
+    <div id="cart-subtotal-row">
+      <span>Subtotal</span>
+      <span id="cart-subtotal">$0.00</span>
+    </div>
+    <button id="cart-checkout-btn" type="button" disabled>
+      Checkout Securely with Stripe
+    </button>
+    <p id="cart-shipping-note">Shipping or local pickup is chosen on the next step.</p>
+  </div>
+</aside>
+
+</body>
+</html>

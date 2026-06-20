@@ -1,0 +1,181 @@
+/* ============================================================
+   Floyd & Co. Apparel — Cart Drawer Styles
+   ------------------------------------------------------------
+   Swap the variable values below for your existing index.html
+   palette (navy / red / cream) so the drawer matches exactly.
+   ============================================================ */
+
+:root {
+  --fc-navy: #1b2a4a;
+  --fc-red: #a8201c;
+  --fc-cream: #f7f1e6;
+  --fc-line: rgba(27, 42, 74, 0.15);
+}
+
+#cart-toggle-btn {
+  position: fixed;
+  bottom: 1.25rem;
+  right: 1.25rem;
+  z-index: 999;
+  background: var(--fc-red);
+  color: #fff;
+  border: none;
+  border-radius: 999px;
+  padding: 0.85rem 1.15rem;
+  font-weight: 600;
+  font-family: inherit;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
+  cursor: pointer;
+}
+
+#cart-toggle-btn #cart-count {
+  display: inline-block;
+  min-width: 1.4em;
+  margin-left: 0.4em;
+  background: var(--fc-cream);
+  color: var(--fc-navy);
+  border-radius: 999px;
+  padding: 0 0.4em;
+  font-size: 0.85em;
+}
+
+#cart-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease;
+  z-index: 998;
+}
+#cart-backdrop.open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+#cart-drawer {
+  position: fixed;
+  top: 0;
+  right: -100%;
+  width: min(400px, 100vw);
+  height: 100vh;
+  background: var(--fc-cream);
+  border-left: 3px solid var(--fc-navy);
+  box-shadow: -8px 0 24px rgba(0, 0, 0, 0.2);
+  transition: right 0.3s ease;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  padding: 1.25rem;
+  overflow-y: auto;
+}
+#cart-drawer.open {
+  right: 0;
+}
+
+#cart-drawer h2 {
+  margin: 0 0 1rem;
+  color: var(--fc-navy);
+  font-size: 1.3rem;
+}
+
+#cart-close-btn {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  line-height: 1;
+  cursor: pointer;
+  color: var(--fc-navy);
+}
+
+#cart-empty-msg {
+  color: #555;
+  padding: 1rem 0;
+}
+
+.cart-line {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.85rem 0;
+  border-bottom: 1px solid var(--fc-line);
+}
+
+.cart-line-info span {
+  display: block;
+  font-size: 0.85rem;
+  color: #555;
+  margin-top: 0.15rem;
+}
+
+.cart-line-controls {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.cart-qty-edit {
+  width: 48px;
+  text-align: center;
+  border: 1px solid var(--fc-line);
+  border-radius: 4px;
+  padding: 0.25rem;
+}
+
+.cart-line-price {
+  font-weight: 600;
+  color: var(--fc-navy);
+  min-width: 3.5em;
+  text-align: right;
+}
+
+.cart-remove-btn {
+  background: none;
+  border: none;
+  font-size: 1.25rem;
+  line-height: 1;
+  cursor: pointer;
+  color: var(--fc-red);
+}
+
+#cart-summary {
+  margin-top: auto;
+  padding-top: 1rem;
+  border-top: 2px solid var(--fc-navy);
+}
+
+#cart-subtotal-row {
+  display: flex;
+  justify-content: space-between;
+  font-weight: 600;
+  color: var(--fc-navy);
+  margin-bottom: 0.75rem;
+}
+
+#cart-checkout-btn {
+  width: 100%;
+  background: var(--fc-navy);
+  color: #fff;
+  padding: 0.95rem;
+  border: none;
+  border-radius: 4px;
+  font-weight: 600;
+  font-size: 1rem;
+  font-family: inherit;
+  cursor: pointer;
+}
+#cart-checkout-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+#cart-shipping-note {
+  font-size: 0.8rem;
+  color: #555;
+  margin-top: 0.6rem;
+  text-align: center;
+}
