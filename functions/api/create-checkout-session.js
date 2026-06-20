@@ -145,7 +145,7 @@ export async function onRequestPost(context) {
         // instead of through an SDK (which would pin a version itself).
         // Without this, requests silently follow whatever default version
         // is set on the Stripe account, which can change under you.
-        "Stripe-Version": "2026-05-27",
+        "Stripe-Version": "2026-05-27.dahlia",
       },
       body: params,
     });
