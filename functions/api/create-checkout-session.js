@@ -69,7 +69,13 @@ function toStripeFormParams(obj, params = new URLSearchParams(), prefix = "") {
   for (const [key, value] of Object.entries(obj)) {
     const fullKey = prefix ? `${prefix}[${key}]` : key;
     if (Array.isArray(value)) {
-      value.forEach((v, i) => toStripeFormParams(v, params, `${fullKey}[${i}]`));
+      value.forEach((v, i) => {
+        if (v !== null && typeof v === "object") {
+          toStripeFormParams(v, params, `${fullKey}[${i}]`);
+        } else if (v !== undefined && v !== null) {
+          params.append(`${fullKey}[${i}]`, v);
+        }
+      });
     } else if (value !== null && typeof value === "object") {
       toStripeFormParams(value, params, fullKey);
     } else if (value !== undefined && value !== null) {
