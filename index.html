@@ -332,6 +332,11 @@
       color:var(--muted-gold);
       margin:0 0.4em;
     }
+    @media(max-width:600px){
+      .hero-eyebrow { font-size:0.84rem; }
+      .hero-sub     { font-size:clamp(0.84rem, 1.92vw, 1.08rem); }
+      .hero-trust   { font-size:0.76rem; }
+    }
 
     /* ============================================
        SECTION 4 — PRODUCT CARDS
@@ -1278,14 +1283,14 @@
           <span class="pc-swatches-label">Color</span>
           <button class="swatch active" type="button" style="background:#161616" data-img="images/wtp-black.png" data-name="Black" aria-label="Black"></button>
           <button class="swatch" type="button" style="background:#1c2742" data-img="images/wtp-navy.png" data-name="True Navy" aria-label="True Navy"></button>
-          <button class="swatch" type="button" style="background:#3f4347" data-img="images/wtp-graphite.png" data-name="Graphite" aria-label="Graphite"></button>
+          <button class="swatch" type="button" style="background:#3f4347" data-img="images/wtp-graphite.png" data-name="Pepper" aria-label="Pepper"></button>
           <span class="swatch-name" id="pcWtpColorName">Black</span>
         </div>
 
         <div class="pc-cta">
           <select class="cart-color-select" aria-label="Select color">
             <option value="Black" data-img="images/wtp-black.png" selected>Black</option>
-            <option value="Graphite" data-img="images/wtp-graphite.png">Graphite</option>
+            <option value="Pepper" data-img="images/wtp-graphite.png">Pepper</option>
             <option value="True Navy" data-img="images/wtp-navy.png">True Navy</option>
           </select>
           <select class="cart-size-select" aria-label="Select size">
@@ -1547,6 +1552,38 @@
   })();
 
   // ============================================
+  // OUT-OF-STOCK SIZE MANAGEMENT
+  // ============================================
+  var OOS_SIZES = {
+    eagle: { Ivory: ['YM', 'YL', 'YXL'] },
+    wtp:   { Black: ['YL'], 'True Navy': ['YL'] }
+  };
+
+  function applyOOS(card) {
+    var productId = card.dataset.productId;
+    var colorSelect = card.querySelector('.cart-color-select');
+    var sizeSelect = card.querySelector('.cart-size-select');
+    if (!colorSelect || !sizeSelect) return;
+    var color = colorSelect.value;
+    var disabledSizes = (OOS_SIZES[productId] && OOS_SIZES[productId][color]) || [];
+    Array.from(sizeSelect.options).forEach(function(opt) {
+      var isOOS = disabledSizes.indexOf(opt.value) !== -1;
+      var baseText = opt.text.replace(' — Sold Out', '');
+      opt.disabled = isOOS;
+      opt.text = isOOS ? baseText + ' — Sold Out' : baseText;
+    });
+    // If currently selected size is now OOS, jump to first available
+    if (sizeSelect.selectedIndex >= 0 && sizeSelect.options[sizeSelect.selectedIndex].disabled) {
+      for (var i = 0; i < sizeSelect.options.length; i++) {
+        if (!sizeSelect.options[i].disabled) { sizeSelect.selectedIndex = i; break; }
+      }
+    }
+  }
+
+  // Apply OOS on page load for all product cards
+  document.querySelectorAll('[data-product-id]').forEach(function(card) { applyOOS(card); });
+
+  // ============================================
   // COLOR SELECT → image swap (per card)
   // ============================================
   document.querySelectorAll('.cart-color-select').forEach(function(select){
@@ -1573,6 +1610,7 @@
         sw.classList.toggle('active', sw.dataset.name === colorName || sw.getAttribute('aria-label') === colorName);
       });
       if (nameEl) nameEl.textContent = colorName;
+      applyOOS(card);
     });
   });
 
@@ -1610,6 +1648,7 @@
         if (nameEl) nameEl.textContent = colorName;
         // Keep the dropdown in sync so Add to Cart sends the right color
         if (colorSelect) colorSelect.value = colorName;
+        applyOOS(card);
       });
     });
   });

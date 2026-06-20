@@ -14,9 +14,6 @@
 // API version is pinned to 2026-05-27 (Stripe's current version as of
 // writing) on the request itself — see the fetch call below.
 
-// ⚠️ CONFIRM with Alek: this doc says "Graphite", earlier project notes
-// said "Granite" for the We The People tee. Using "Graphite" below —
-// change this one line if that's wrong, then update cart.js to match.
 const PRODUCT_CATALOG = {
   eagle: {
     name: "America 250 Eagle Tee",
@@ -24,7 +21,7 @@ const PRODUCT_CATALOG = {
   },
   wtp: {
     name: "We The People 250 Tee",
-    colors: ["Graphite", "True Navy", "Black"],
+    colors: ["Pepper", "True Navy", "Black"],
   },
 };
 
